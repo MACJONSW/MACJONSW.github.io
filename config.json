@@ -70,11 +70,6 @@
             "level": 85
         },
         {
-            "name": "C++",
-            "icon": "fab fa-react",
-            "level": 80
-        },
-        {
             "name": "Deep Learning",
             "icon": "fas fa-brain",
             "level": 85
