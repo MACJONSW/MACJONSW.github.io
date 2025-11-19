@@ -21,32 +21,99 @@ function renderPageContent() {
     document.title = siteConfig.personal.title;
     document.querySelector('meta[name="description"]').content = siteConfig.personal.description;
 
-    // Render Hero Section
-    renderHeroSection();
+    // Get sections configuration
+    const sections = siteConfig.sections || {};
 
-    // Render About Section
-    renderAboutSection();
+    // Render sections based on configuration
+    if (sections.hero !== false) {
+        renderHeroSection();
+    } else {
+        hideSection('home');
+    }
 
-    // Render Skills Section
-    renderSkillsSection();
+    if (sections.about !== false) {
+        renderAboutSection();
+    } else {
+        hideSection('about');
+    }
 
-    // Render Experience Section
-    renderExperienceSection();
+    if (sections.skills !== false) {
+        renderSkillsSection();
+    } else {
+        hideSection('skills');
+    }
 
-    // Render Projects Section
-    renderProjectsSection();
+    if (sections.experience !== false) {
+        renderExperienceSection();
+    } else {
+        hideSection('experience');
+    }
 
-    // Render Awards Section
-    renderAwardsSection();
+    if (sections.projects !== false) {
+        renderProjectsSection();
+    } else {
+        hideSection('projects');
+    }
 
-    // Render Contact Section
-    renderContactSection();
+    if (sections.awards !== false) {
+        renderAwardsSection();
+    } else {
+        hideSection('awards');
+    }
 
-    // Render Footer
+    if (sections.contact !== false) {
+        renderContactSection();
+    } else {
+        hideSection('contact');
+    }
+
+    // Render Footer (always visible)
     renderFooter();
 
     // Update navigation brand
     document.querySelector('.nav-brand a').textContent = siteConfig.personal.name;
+
+    // Update navigation menu based on visible sections
+    updateNavigationMenu(sections);
+}
+
+function hideSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.style.display = 'none';
+    }
+}
+
+function updateNavigationMenu(sections) {
+    const navMenu = document.querySelector('.nav-menu');
+    const navItems = navMenu.querySelectorAll('.nav-item');
+
+    // Map of section IDs to their corresponding nav items
+    const sectionMap = {
+        'home': 'home',
+        'about': 'about',
+        'skills': 'skills',
+        'experience': 'experience',
+        'projects': 'projects',
+        'awards': 'awards',
+        'contact': 'contact'
+    };
+
+    // Hide nav items for disabled sections
+    navItems.forEach(item => {
+        const link = item.querySelector('.nav-link');
+        if (link) {
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                const sectionId = href.substring(1);
+                const sectionKey = Object.keys(sectionMap).find(key => sectionMap[key] === sectionId);
+
+                if (sectionKey && sections[sectionKey] === false) {
+                    item.style.display = 'none';
+                }
+            }
+        }
+    });
 }
 
 function renderHeroSection() {

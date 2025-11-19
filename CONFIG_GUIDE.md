@@ -8,20 +8,47 @@
 
 配置文件 `config.json` 包含以下主要部分：
 
-1. **personal** - 个人基本信息
-2. **hero** - 首页大标题区域
-3. **about** - 关于我区域
-4. **skills** - 技能列表
-5. **experience** - 工作经历和教育背景
-6. **projects** - 项目展示
-7. **awards** - 获奖和成就
-8. **contact** - 联系方式
-9. **footer** - 页脚信息
-10. **socialLinks** - 社交媒体链接
+1. **sections** - 🆕 控制各区块的显示/隐藏
+2. **personal** - 个人基本信息
+3. **hero** - 首页大标题区域
+4. **about** - 关于我区域
+5. **skills** - 技能列表
+6. **experience** - 工作经历和教育背景
+7. **projects** - 项目展示
+8. **awards** - 获奖和成就
+9. **contact** - 联系方式
+10. **footer** - 页脚信息
+11. **socialLinks** - 社交媒体链接
 
 ---
 
 ## 🎯 详细配置说明
+
+### 0. 区块显示控制 (sections) 🆕
+
+```json
+"sections": {
+  "hero": true,
+  "about": true,
+  "skills": true,
+  "experience": true,
+  "projects": true,
+  "awards": true,
+  "contact": true
+}
+```
+
+**说明：**
+- 设置为 `true` 表示显示该区块
+- 设置为 `false` 表示隐藏该区块
+- 隐藏的区块不会在页面中显示，导航菜单中的对应链接也会自动隐藏
+
+**使用场景：**
+- 如果你暂时没有项目展示，可以设置 `"projects": false`
+- 如果你不想显示获奖信息，可以设置 `"awards": false`
+- 灵活控制页面内容，只展示你需要的部分
+
+---
 
 ### 1. 个人基本信息 (personal)
 
