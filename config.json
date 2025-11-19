@@ -1,0 +1,241 @@
+{
+  "personal": {
+    "name": "Hongru Wu",
+    "title": "个人主页",
+    "description": "Be what you wanna be",
+    "email": "your.email@example.com",
+    "github": "https://github.com/MACJONSW",
+    "linkedin": "https://linkedin.com/in/yourprofile",
+    "twitter": "https://twitter.com/yourhandle",
+    "photo": "static/assets/img/photo.png"
+  },
+  
+  "hero": {
+    "greeting": "Hi, I'm",
+    "name": "Hongru Wu",
+    "typedTexts": [
+      "Developer",
+      "Researcher",
+      "Problem Solver",
+      "Tech Enthusiast"
+    ],
+    "description": "Be what you wanna be",
+    "buttons": [
+      {
+        "text": "Get in Touch",
+        "link": "#contact",
+        "type": "primary"
+      },
+      {
+        "text": "View Projects",
+        "link": "#projects",
+        "type": "secondary"
+      }
+    ]
+  },
+  
+  "about": {
+    "title": "About Me",
+    "subtitle": "Hello! I'm Hongru Wu",
+    "paragraphs": [
+      "I'm a passionate developer and researcher with a strong background in computer science. I love creating elegant solutions to complex problems and am always eager to learn new technologies.",
+      "My interests span across artificial intelligence, machine learning, web development, and software engineering. I believe in the power of technology to make a positive impact on the world."
+    ],
+    "stats": [
+      {
+        "number": "5+",
+        "label": "Years Experience"
+      },
+      {
+        "number": "20+",
+        "label": "Projects Completed"
+      },
+      {
+        "number": "10+",
+        "label": "Awards Won"
+      }
+    ]
+  },
+  
+  "skills": [
+    {
+      "name": "Python",
+      "icon": "fab fa-python",
+      "level": 90
+    },
+    {
+      "name": "JavaScript",
+      "icon": "fab fa-js",
+      "level": 85
+    },
+    {
+      "name": "React",
+      "icon": "fab fa-react",
+      "level": 80
+    },
+    {
+      "name": "Machine Learning",
+      "icon": "fas fa-brain",
+      "level": 85
+    },
+    {
+      "name": "Node.js",
+      "icon": "fab fa-node-js",
+      "level": 75
+    },
+    {
+      "name": "Database",
+      "icon": "fas fa-database",
+      "level": 80
+    }
+  ],
+  
+  "experience": [
+    {
+      "type": "work",
+      "title": "Senior Software Engineer",
+      "organization": "Tech Company",
+      "date": "2022 - Present",
+      "description": "Leading development of innovative solutions and mentoring junior developers. Focus on AI/ML integration and scalable web applications.",
+      "icon": "fas fa-briefcase"
+    },
+    {
+      "type": "education",
+      "title": "Master's Degree in Computer Science",
+      "organization": "University Name",
+      "date": "2019 - 2022",
+      "description": "Specialized in artificial intelligence and machine learning. Published research papers on deep learning applications.",
+      "icon": "fas fa-graduation-cap"
+    },
+    {
+      "type": "work",
+      "title": "Software Developer",
+      "organization": "Previous Company",
+      "date": "2020 - 2022",
+      "description": "Developed full-stack web applications using modern technologies. Collaborated with cross-functional teams to deliver high-quality products.",
+      "icon": "fas fa-code"
+    },
+    {
+      "type": "education",
+      "title": "Bachelor's Degree in Computer Science",
+      "organization": "University Name",
+      "date": "2015 - 2019",
+      "description": "Foundation in computer science fundamentals, algorithms, and software engineering. Graduated with honors.",
+      "icon": "fas fa-graduation-cap"
+    }
+  ],
+  
+  "projects": [
+    {
+      "title": "AI-Powered Application",
+      "description": "A cutting-edge application leveraging machine learning to solve real-world problems.",
+      "image": "https://via.placeholder.com/400x250?text=Project+1",
+      "tags": ["Python", "TensorFlow", "React"],
+      "demoLink": "#",
+      "githubLink": "https://github.com"
+    },
+    {
+      "title": "Web Platform",
+      "description": "A modern web platform with real-time features and responsive design.",
+      "image": "https://via.placeholder.com/400x250?text=Project+2",
+      "tags": ["Node.js", "MongoDB", "Socket.io"],
+      "demoLink": "#",
+      "githubLink": "https://github.com"
+    },
+    {
+      "title": "Mobile App",
+      "description": "Cross-platform mobile application with intuitive user experience.",
+      "image": "https://via.placeholder.com/400x250?text=Project+3",
+      "tags": ["React Native", "Firebase", "Redux"],
+      "demoLink": "#",
+      "githubLink": "https://github.com"
+    }
+  ],
+  
+  "awards": [
+    {
+      "title": "Best Innovation Award",
+      "date": "2024",
+      "description": "Recognized for outstanding innovation in AI applications",
+      "icon": "fas fa-trophy"
+    },
+    {
+      "title": "Hackathon Winner",
+      "date": "2023",
+      "description": "First place in national coding competition",
+      "icon": "fas fa-medal"
+    },
+    {
+      "title": "Outstanding Research",
+      "date": "2023",
+      "description": "Published paper in top-tier conference",
+      "icon": "fas fa-award"
+    },
+    {
+      "title": "Academic Excellence",
+      "date": "2022",
+      "description": "Graduated with highest honors",
+      "icon": "fas fa-star"
+    }
+  ],
+  
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Let's Connect!",
+    "description": "I'm always interested in hearing about new opportunities, collaborations, or just having a friendly chat. Feel free to reach out!",
+    "info": [
+      {
+        "icon": "fas fa-envelope",
+        "text": "your.email@example.com",
+        "link": "mailto:your.email@example.com"
+      },
+      {
+        "icon": "fab fa-github",
+        "text": "github.com/MACJONSW",
+        "link": "https://github.com/MACJONSW"
+      },
+      {
+        "icon": "fab fa-linkedin",
+        "text": "LinkedIn Profile",
+        "link": "https://linkedin.com"
+      }
+    ]
+  },
+  
+  "footer": {
+    "copyright": "© 2023-2025 Hongru Wu. All Rights Reserved.",
+    "links": [
+      {
+        "text": "GitHub",
+        "url": "https://github.com/MACJONSW"
+      },
+      {
+        "text": "Back to Top",
+        "url": "#home"
+      }
+    ]
+  },
+  
+  "socialLinks": [
+    {
+      "platform": "GitHub",
+      "icon": "fab fa-github",
+      "url": "https://github.com/MACJONSW"
+    },
+    {
+      "platform": "LinkedIn",
+      "icon": "fab fa-linkedin",
+      "url": "https://linkedin.com"
+    },
+    {
+      "platform": "Email",
+      "icon": "fas fa-envelope",
+      "url": "mailto:your.email@example.com"
+    },
+    {
+      "platform": "Twitter",
+      "icon": "fab fa-twitter",
+      "url": "https://twitter.com"
+    }
+  ]
+}
