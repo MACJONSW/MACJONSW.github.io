@@ -1376,6 +1376,15 @@
             </button>
           </div>
         </div>
+        <div class="card" style="margin-top: 14px;">
+          <div class="section-title">
+            <span>手动发送</span>
+          </div>
+          <form class="input-wrap" id="care-form">
+            <input id="care-input" type="text" placeholder="妈妈刚刚上传了照片，要不要问一问？" />
+            <button class="cta" id="care-send" type="submit">发送</button>
+          </form>
+        </div>
       </section>
 
       <section class="screen active" id="screen-story">
@@ -1600,6 +1609,9 @@
     };
 
     const careChatWindow = document.getElementById("care-chat-window");
+    const careInput = document.getElementById("care-input");
+    const careSend = document.getElementById("care-send");
+    const careForm = document.getElementById("care-form");
 
     const appendCareMessage = (text) => {
       if (!careChatWindow) return;
@@ -1681,6 +1693,33 @@
         }, 900);
       });
     });
+
+    const sendCareInput = () => {
+      if (!careInput) return;
+      const text = careInput.value.trim();
+      if (!text) return;
+      appendCareMessage(text);
+      careInput.value = "";
+      careChatWindow.scrollTop = careChatWindow.scrollHeight;
+    };
+
+    if (careSend) {
+      careSend.addEventListener("click", sendCareInput);
+    }
+    if (careForm) {
+      careForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        sendCareInput();
+      });
+    }
+    if (careInput) {
+      careInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          sendCareInput();
+        }
+      });
+    }
 
     const resonanceField = document.getElementById("resonance-field");
     const staticImages = [
