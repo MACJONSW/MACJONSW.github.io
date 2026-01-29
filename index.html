@@ -1008,6 +1008,7 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
+      z-index: 2;
     }
 
     .camera-grid {
@@ -1095,6 +1096,19 @@
       font-size: 11px;
       color: rgba(255, 255, 255, 0.85);
       text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    }
+
+    .camera-flash {
+      position: absolute;
+      inset: 0;
+      background: #fff;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .camera-flash.active {
+      animation: flashPulse 0.35s ease;
     }
 
     .camera-actions {
@@ -1281,6 +1295,12 @@
       }
     }
 
+    @keyframes flashPulse {
+      0% { opacity: 0; }
+      30% { opacity: 0.95; }
+      100% { opacity: 0; }
+    }
+
     @media (max-width: 520px) {
       body {
         padding: 0;
@@ -1388,7 +1408,7 @@
               <button class="ghost-btn" id="quick-capture">📸 随手拍</button>
               <button class="share-pill">🫶 发送到家庭共鸣</button>
             </div>
-            <div class="personal-grid">
+            <div class="personal-grid" id="personal-grid">
               <div class="personal-photo">
                 <img src="personal_context/hack.jpg" alt="拾光 1" />
               </div>
@@ -1544,6 +1564,7 @@
         </div>
         <div class="camera-viewfinder">
           <img src="jst/1769663029414_d.jpg" alt="取景画面" />
+          <div class="camera-flash" id="camera-flash"></div>
           <div class="camera-overlay">
             <div class="camera-status">
               <span>HDR 自动</span>
@@ -1870,6 +1891,8 @@
     const cameraOpen = document.getElementById("quick-capture");
     const cameraClose = document.getElementById("camera-close");
     const cameraShoot = document.querySelector("#camera-modal .cta");
+    const personalGrid = document.getElementById("personal-grid");
+    const cameraFlash = document.getElementById("camera-flash");
 
     cameraOpen.addEventListener("click", () => {
       cameraModal.classList.add("active");
@@ -1881,8 +1904,16 @@
 
     cameraShoot.addEventListener("click", () => {
       const newPhoto = "jst/1769663029414_d.jpg";
-      staticImages.unshift(newPhoto);
-      renderResonanceBubbles();
+      cameraFlash.classList.remove("active");
+      void cameraFlash.offsetWidth;
+      cameraFlash.classList.add("active");
+      const item = document.createElement("div");
+      item.className = "personal-photo";
+      const img = document.createElement("img");
+      img.src = newPhoto;
+      img.alt = "拾光 新照片";
+      item.appendChild(img);
+      personalGrid.prepend(item);
       cameraModal.classList.remove("active");
     });
 
@@ -1920,6 +1951,15 @@
     });
 
     shareConfirm.addEventListener("click", () => {
+      const selected = Array.from(shareGrid.querySelectorAll(".select-item.selected"))
+        .map((item) => item.dataset.image)
+        .filter(Boolean);
+      selected.forEach((src) => {
+        if (!staticImages.includes(src)) {
+          staticImages.unshift(src);
+        }
+      });
+      renderResonanceBubbles();
       shareModal.classList.remove("active");
     });
 
