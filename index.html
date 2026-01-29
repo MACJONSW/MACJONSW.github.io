@@ -540,6 +540,15 @@
       flex-wrap: wrap;
     }
 
+    .care-chat-options.hidden {
+      display: none;
+    }
+
+    .care-start {
+      display: block;
+      margin: 10px auto 0;
+    }
+
     .care-chat-option {
       border: none;
       padding: 0;
@@ -1098,19 +1107,6 @@
       text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
     }
 
-    .camera-flash {
-      position: absolute;
-      inset: 0;
-      background: #fff;
-      opacity: 0;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .camera-flash.active {
-      animation: flashPulse 0.35s ease;
-    }
-
     .camera-actions {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1295,12 +1291,6 @@
       }
     }
 
-    @keyframes flashPulse {
-      0% { opacity: 0; }
-      30% { opacity: 0.95; }
-      100% { opacity: 0; }
-    }
-
     @media (max-width: 520px) {
       body {
         padding: 0;
@@ -1366,7 +1356,8 @@
           <div class="section-title">
             <span>从哪儿开始聊？</span>
           </div>
-          <div class="care-chat-options">
+          <button class="ghost-btn care-start" id="care-start">看看家庭成员都在干什么</button>
+          <div class="care-chat-options" id="care-chat-options">
             <button class="care-chat-option" data-key="开心">
               <img src="jst/开心.jpeg" alt="开心" />
               <span>最近的一件开心小事</span>
@@ -1564,7 +1555,6 @@
         </div>
         <div class="camera-viewfinder">
           <img src="jst/1769663029414_d.jpg" alt="取景画面" />
-          <div class="camera-flash" id="camera-flash"></div>
           <div class="camera-overlay">
             <div class="camera-status">
               <span>HDR 自动</span>
@@ -1578,7 +1568,7 @@
           </div>
         </div>
         <div class="camera-actions">
-          <button class="ghost-btn">取消</button>
+          <button class="ghost-btn" id="camera-cancel">取消</button>
           <button class="cta">拍摄</button>
         </div>
       </div>
@@ -1603,7 +1593,7 @@
     });
 
     const careNotes = {
-      开心: "听你这么说，我就放心了，在外面过得开心就好。",
+      开心: "注意身体啊妈妈，听你说最近心情不错我也很开心！",
       火锅: "你们晚上吃火锅啊？下雪天吃这个最舒服了。",
       电影: "吃完火锅还去看电影了？安排得挺丰富啊。",
       雪: "北京下雪啦？还拍了其他照片吗？我一看到你说窗外全白了，就觉得肯定特别好看。",
@@ -1621,7 +1611,7 @@
 
       const from = document.createElement("div");
       from.className = "from";
-      from.textContent = "妈";
+      from.textContent = "我";
 
       const body = document.createElement("div");
       body.textContent = clean;
@@ -1891,9 +1881,11 @@
     const cameraOpen = document.getElementById("quick-capture");
     const cameraClose = document.getElementById("camera-close");
     const cameraShoot = document.querySelector("#camera-modal .cta");
+    const cameraCancel = document.getElementById("camera-cancel");
     const personalGrid = document.getElementById("personal-grid");
-    const cameraFlash = document.getElementById("camera-flash");
-
+    const shareGrid = document.getElementById("share-grid");
+    const careStart = document.getElementById("care-start");
+    const careOptions = document.getElementById("care-chat-options");
     cameraOpen.addEventListener("click", () => {
       cameraModal.classList.add("active");
     });
@@ -1902,11 +1894,22 @@
       cameraModal.classList.remove("active");
     });
 
+    cameraCancel.addEventListener("click", () => {
+      cameraModal.classList.remove("active");
+    });
+
     cameraShoot.addEventListener("click", () => {
       const newPhoto = "jst/1769663029414_d.jpg";
-      cameraFlash.classList.remove("active");
-      void cameraFlash.offsetWidth;
-      cameraFlash.classList.add("active");
+      if (!document.querySelector(`.select-item[data-image="${newPhoto}"]`)) {
+        const shareItem = document.createElement("div");
+        shareItem.className = "select-item selected";
+        shareItem.dataset.image = newPhoto;
+        const shareImg = document.createElement("img");
+        shareImg.src = newPhoto;
+        shareImg.alt = "拾光 新照片";
+        shareItem.appendChild(shareImg);
+        shareGrid.prepend(shareItem);
+      }
       const item = document.createElement("div");
       item.className = "personal-photo";
       const img = document.createElement("img");
@@ -1920,7 +1923,6 @@
     const shareModal = document.getElementById("share-modal");
     const shareBtn = document.querySelector(".share-pill");
     const shareClose = document.getElementById("share-close");
-    const shareGrid = document.getElementById("share-grid");
     const shareSummary = document.getElementById("share-summary");
     const shareConfirm = document.getElementById("share-confirm");
 
@@ -1961,6 +1963,12 @@
       });
       renderResonanceBubbles();
       shareModal.classList.remove("active");
+    });
+
+    careOptions.classList.add("hidden");
+    careStart.addEventListener("click", () => {
+      careOptions.classList.remove("hidden");
+      careStart.remove();
     });
 
     const bellBtn = document.getElementById("bell-btn");
